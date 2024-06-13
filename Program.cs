@@ -11,7 +11,7 @@ using System.Threading.Channels;
 
 namespace Lab14
 {
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// Ввод числа 

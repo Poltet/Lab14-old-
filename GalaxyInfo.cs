@@ -9,7 +9,7 @@ namespace Lab14
 {
     public class GalaxyInfo
     {
-        static Random rand = new Random();
+        private Random rand = new Random();
         protected string name;   //Название галактики
         public string Name       //Название галактики
         {

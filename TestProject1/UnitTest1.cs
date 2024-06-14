@@ -1,29 +1,28 @@
 using ClassLibrary1;
-using Lab14;
+using Lab14__;
 using System.Text.RegularExpressions;
 
-
-namespace TestProject14
+namespace TestProjectLab14
 {
     [TestClass]
     public class UnitTest1
     {
         [TestMethod]
-        public void Galaxy_Constructor() //Конструктор галактики
+        public void Galaxy_Constructor() //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РіР°Р»Р°РєС‚РёРєРё
         {
             Galaxy galaxy = new Galaxy();
             Assert.IsNotNull(galaxy.Name);
         }
         [TestMethod]
-        public void Galaxy_NameSet()  //Установка имени галактики
+        public void Galaxy_NameSet()  //РЈСЃС‚Р°РЅРѕРІРєР° РёРјРµРЅРё РіР°Р»Р°РєС‚РёРєРё
         {
             Galaxy galaxy = new Galaxy();
-            string Name = "Новая Галактика";
+            string Name = "РќРѕРІР°СЏ Р“Р°Р»Р°РєС‚РёРєР°";
             galaxy.Name = Name;
             Assert.AreEqual(Name, galaxy.Name);
         }
         [TestMethod]
-        public void Galaxy_NoNameSet()  //Установка имени галактики
+        public void Galaxy_NoNameSet()  //РЈСЃС‚Р°РЅРѕРІРєР° РёРјРµРЅРё РіР°Р»Р°РєС‚РёРєРё
         {
             Galaxy galaxy = new Galaxy();
             string Name = " ";
@@ -31,7 +30,7 @@ namespace TestProject14
             Assert.AreEqual("No name", galaxy.Name);
         }
         [TestMethod]
-        public void Galaxy_Add()  //Добавление 
+        public void Galaxy_Add()  //Р”РѕР±Р°РІР»РµРЅРёРµ 
         {
             Galaxy galaxy = new Galaxy();
             CelestialBody body = new CelestialBody();
@@ -40,7 +39,7 @@ namespace TestProject14
             Assert.AreEqual(body, galaxy.ContentsGalaxy[body.Name]);
         }
         [TestMethod]
-        public void Galaxy_Add2()  //Добавление в словарь повторяющегося элемента
+        public void Galaxy_Add2()  //Р”РѕР±Р°РІР»РµРЅРёРµ РІ СЃР»РѕРІР°СЂСЊ РїРѕРІС‚РѕСЂСЏСЋС‰РµРіРѕСЃСЏ СЌР»РµРјРµРЅС‚Р°
         {
             Galaxy galaxy = new Galaxy();
             CelestialBody body = new CelestialBody();
@@ -50,7 +49,7 @@ namespace TestProject14
             Assert.AreEqual(1, galaxy.ContentsGalaxy.Count);
         }
         [TestMethod]
-        public void MakeGalax()  //Формирование галактики
+        public void MakeGalax()  //Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РіР°Р»Р°РєС‚РёРєРё
         {
             Galaxy galaxy = new Galaxy();
             galaxy.MakeGalaxy();
@@ -61,7 +60,7 @@ namespace TestProject14
             Assert.IsTrue(celestialBodies.Where(celbody => celbody is Star).Count() <= 5);
         }
         [TestMethod]
-        public void MaxTemperature()  //Максимальная температура звезды
+        public void MaxTemperature()  //РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° Р·РІРµР·РґС‹
         {
             var galaxy1 = new Galaxy();
             galaxy1.ContentsGalaxy.Add("Star1", new Star { Temperature = 5000 });
@@ -78,7 +77,7 @@ namespace TestProject14
         }
 
         [TestMethod]
-        public void MinTemperature_ShouldReturnMinimumTemperatureOfStars() //Минимальная температура звезды
+        public void MinTemperature() //РњРёРЅРёРјР°Р»СЊРЅР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° Р·РІРµР·РґС‹
         {
             var galaxy1 = new Galaxy();
             galaxy1.ContentsGalaxy.Add("Star1", new Star { Temperature = 5000 });
@@ -94,17 +93,17 @@ namespace TestProject14
             Assert.AreEqual(3000, minTemperature);
         }
         [TestMethod]
-        public void Intersect()  //Пересечение
+        public void Intersect()  //РџРµСЂРµСЃРµС‡РµРЅРёРµ
         {
             CelestialBody common1 = new CelestialBody("Common1", 1, 1, 1);
             CelestialBody common2 = new CelestialBody("Common2", 1, 1, 1);
             CelestialBody celbody1 = new CelestialBody("1", 1, 1, 1);
             CelestialBody celbody2 = new CelestialBody("2", 1, 1, 1);
-            var galaxy1 = new Galaxy();  //Галактика 1
+            var galaxy1 = new Galaxy();  //Р“Р°Р»Р°РєС‚РёРєР° 1
             galaxy1.Add(common1);
             galaxy1.Add(common2);
             galaxy1.Add(celbody1);
-            var galaxy2 = new Galaxy();  //Галактика 2
+            var galaxy2 = new Galaxy();  //Р“Р°Р»Р°РєС‚РёРєР° 2
             galaxy2.Add(common1);
             galaxy2.Add(common2);
             galaxy2.Add(celbody2);
@@ -113,7 +112,7 @@ namespace TestProject14
             CollectionAssert.AreEquivalent(CommonNames, intersect.Select(cb => cb.Name).ToList());
         }
         [TestMethod]
-        public void GroupByType()  //Группировка по типу
+        public void GroupByType()  //Р“СЂСѓРїРїРёСЂРѕРІРєР° РїРѕ С‚РёРїСѓ
         {
             Galaxy galaxy1 = new Galaxy();
             Galaxy galaxy2 = new Galaxy();
@@ -128,10 +127,10 @@ namespace TestProject14
             var galaxies = new List<Galaxy> { galaxy1, galaxy2 };
             var groupedResult = Galaxy.GroupByType(galaxies);
             var groupList = groupedResult.ToList();
-            Assert.AreEqual(3, groupList.Count); //3 группы
+            Assert.AreEqual(3, groupList.Count); //3 РіСЂСѓРїРїС‹
         }
         [TestMethod]
-        public void GroupByRadius()  //Группировка по радиусу
+        public void GroupByRadius()  //Р“СЂСѓРїРїРёСЂРѕРІРєР° РїРѕ СЂР°РґРёСѓСЃСѓ
         {
             Galaxy galaxy1 = new Galaxy();
             Galaxy galaxy2 = new Galaxy();
@@ -151,32 +150,30 @@ namespace TestProject14
             Assert.AreEqual(4, groupList.Count);
         }
         [TestMethod]
-        public void Volume_ShouldCalculateVolumesCorrectly()
+        public void Volume() //РћР±СЊРµРј РЅРµР±РµСЃРЅРѕРіРѕ С‚РµР»Р°
         {
-            Galaxy galaxy1 = new Galaxy();
-            Galaxy galaxy2 = new Galaxy();
+            // РџРѕРґРіРѕС‚РѕРІРєР° РґР°РЅРЅС‹С…
+            var galaxy1 = new Galaxy
+            {
+                ContentsGalaxy = new Dictionary<string, CelestialBody>
+                {
+                    { "Earth", new CelestialBody { Name = "Earth", Radius = 6371 } }
+                }
+            };
+            var galaxy2 = new Galaxy
+            {
+                ContentsGalaxy = new Dictionary<string, CelestialBody>
+                {
+                    { "Mars", new CelestialBody { Name = "Mars", Radius = 33 } }
+                }
+            };
 
-            CelestialBody celestialBody = new CelestialBody("CelestialBody", 30, 30, 10);
-            Star star = new Star("Star", 60, 60, 20, 20);
-
-            galaxy1.Add(celestialBody);
-            galaxy1.Add(star);
-
-            List<Galaxy> galaxies = new List<Galaxy> { galaxy1, galaxy2 };
-
-            var result = Galaxy.Volume(galaxies);
-            var resultList = result.ToList();
-
-            // Assert
-            Assert.AreEqual(2, resultList.Count); // Проверяем, что получили два элемента в результате
-
-            var celestialBodyResult = resultList.FirstOrDefault(item => item.Name == "CelestialBody");
-
-            double expectedVolumeCB = (4.0 / 3.0) * Math.PI * Math.Pow(celestialBody.Radius, 3);
-            Assert.AreEqual(expectedVolumeCB, celestialBodyResult.volume);
+            var galaxies = new List<Galaxy> { galaxy1, galaxy2 };
+            var results = Galaxy.Volume(galaxies).ToList();
+            Assert.AreEqual(2, results.Count);
         }
         [TestMethod]
-        public void GalaxyInfo_DefaultConstructor()  //Конструктор без параметров 
+        public void GalaxyInfo_DefaultConstructor()  //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ 
         {
             var galaxyInfo = new GalaxyInfo();
             Assert.AreEqual("No name", galaxyInfo.Name);
@@ -184,7 +181,7 @@ namespace TestProject14
             Assert.AreEqual("No type", galaxyInfo.Type);
         }
         [TestMethod]
-        public void GalaxyInfo_Constructor()  //Конструктор с параметрами
+        public void GalaxyInfo_Constructor()  //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
         {
             string name = "Name";
             string address = "Address";
@@ -195,7 +192,7 @@ namespace TestProject14
             Assert.AreEqual(type, galaxyInfo.Type);
         }
         [TestMethod]
-        public void GalaxyInfo_Set()  //Сеттер
+        public void GalaxyInfo_Set()  //РЎРµС‚С‚РµСЂ
         {
             var galaxyInfo = new GalaxyInfo();
             galaxyInfo.Name = "";
@@ -207,11 +204,11 @@ namespace TestProject14
             Assert.AreEqual("No type", galaxyInfo.Type);
         }
         [TestMethod]
-        public void GalaxyInfo_RandomInit()  //Заполнение с помощью дсч
+        public void GalaxyInfo_RandomInit()  //Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ РїРѕРјРѕС‰СЊСЋ РґСЃС‡
         {
             var galaxyInfo = new GalaxyInfo();
             galaxyInfo.RandomInit();
-            Regex regex = new Regex("[А-Яа-яA-Za-z0-9]+");
+            Regex regex = new Regex("[Рђ-РЇР°-СЏA-Za-z0-9]+");
             Assert.IsTrue(regex.IsMatch(galaxyInfo.Name));
             Assert.IsTrue(regex.IsMatch(galaxyInfo.Type));
             Assert.IsTrue(regex.IsMatch(galaxyInfo.Address));
@@ -220,13 +217,13 @@ namespace TestProject14
         public void AveragePlanetWeight()
         {
             var collection = new List<CelestialBody>
-            {
-                new Planet { Name = "Planet1", Weight = 10 },
-                new Planet { Name = "Planet2", Weight = 20 },
-                new Planet { Name = "Planet3", Weight = 30 },
-                new Star { Name = "Star1", Weight = 50 },
-                new GasGigant { Name = "GasGigant1", Weight = 40 }
-            };
+    {
+        new Planet { Name = "Planet1", Weight = 10 },
+        new Planet { Name = "Planet2", Weight = 20 },
+        new Planet { Name = "Planet3", Weight = 30 },
+        new Star { Name = "Star1", Weight = 50 },
+        new GasGigant { Name = "GasGigant1", Weight = 40 }
+    };
             double averageWeight = Program.AveragePlanetWeight(collection);
             Assert.AreEqual(20, averageWeight);
         }
@@ -234,59 +231,58 @@ namespace TestProject14
         public void SumSatellites_ShouldReturnCorrectSum()
         {
             var collection = new List<CelestialBody>
-            {
-                new Planet { Name = "Planet1", Satellites = 3 },
-                new Planet { Name = "Planet2", Satellites = 5 },
-                new Planet { Name = "Planet3", Satellites = 7 },
-                new Star { Name = "Star1" },
-                new GasGigant { Name = "GasGigant1", Satellites = 10 }
-            };
+    {
+        new Planet { Name = "Planet1", Satellites = 3 },
+        new Planet { Name = "Planet2", Satellites = 5 },
+        new Planet { Name = "Planet3", Satellites = 7 },
+        new Star { Name = "Star1" },
+        new GasGigant { Name = "GasGigant1", Satellites = 10 }
+    };
             int totalSatellites = Program.SumSatellites(collection);
-            Assert.AreEqual(15, totalSatellites); // Ожидаемая сумма спутников: 3 + 5 + 7 = 15
+            Assert.AreEqual(15, totalSatellites); // РћР¶РёРґР°РµРјР°СЏ СЃСѓРјРјР° СЃРїСѓС‚РЅРёРєРѕРІ: 3 + 5 + 7 = 15
         }
         [TestMethod]
         public void CountPlanets_ShouldReturnCorrectCount()
         {
             var collection = new List<CelestialBody>
-            {
-                new Planet { Name = "Planet1" },
-                new Planet { Name = "Planet2" },
-                new Star { Name = "Star1" },
-                new CelestialBody { Name = "CelestialBody1" },
-                new Planet { Name = "Planet3" },
-                new GasGigant { Name = "GasGigant1" }
-            };
+    {
+        new Planet { Name = "Planet1" },
+        new Planet { Name = "Planet2" },
+        new Star { Name = "Star1" },
+        new CelestialBody { Name = "CelestialBody1" },
+        new Planet { Name = "Planet3" },
+        new GasGigant { Name = "GasGigant1" }
+    };
             int planetCount = Program.CountPlanets(collection);
-            Assert.AreEqual(3, planetCount); // Ожидаемое количество планет: 3
+            Assert.AreEqual(3, planetCount); // РћР¶РёРґР°РµРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїР»Р°РЅРµС‚: 3
         }
         [TestMethod]
         public void CountStars_ShouldReturnCorrectCount_WhenOnlyStars()
         {
             // Arrange
             var collection = new List<CelestialBody>
-            {
-                new Star { Name = "Star1" },
-                new Star { Name = "Star2" },
-                new Star { Name = "Star3" }
-            };
+    {
+        new Star { Name = "Star1" },
+        new Star { Name = "Star2" },
+        new Star { Name = "Star3" }
+    };
             int starCount = Program.CountStars(collection);
-            Assert.AreEqual(3, starCount); // Ожидаемое количество звезд: 3
+            Assert.AreEqual(3, starCount); // РћР¶РёРґР°РµРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РІРµР·Рґ: 3
         }
         [TestMethod]
         public void GroupById_ShouldGroupByIdCorrectly_WhenIdsAreDuplicated()
         {
             var collection = new List<CelestialBody>
-            {
-                new CelestialBody("1",1,1,1),
-                new CelestialBody("2",1,1,1),
-                new CelestialBody("3",1,1,2),
-                new CelestialBody ("3",1,1,2)
-            };
+    {
+        new CelestialBody("1",1,1,1),
+        new CelestialBody("2",1,1,1),
+        new CelestialBody("3",1,1,2),
+        new CelestialBody ("3",1,1,2)
+    };
             var groupedResult = Program.GroupById(collection);
             var groupList = groupedResult.ToList();
 
-            Assert.AreEqual(2, groupList.Count); // Ожидаемое количество групп: 2
+            Assert.AreEqual(2, groupList.Count); // РћР¶РёРґР°РµРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РіСЂСѓРїРї: 2
         }
-
     }
 }

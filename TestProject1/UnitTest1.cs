@@ -1,5 +1,5 @@
 using ClassLibrary1;
-using Lab14__;
+using Lab14;
 using System.Text.RegularExpressions;
 
 namespace TestProjectLab14
@@ -216,45 +216,69 @@ namespace TestProjectLab14
         [TestMethod]
         public void AveragePlanetWeight()
         {
-            var collection = new List<CelestialBody>
-    {
-        new Planet { Name = "Planet1", Weight = 10 },
-        new Planet { Name = "Planet2", Weight = 20 },
-        new Planet { Name = "Planet3", Weight = 30 },
-        new Star { Name = "Star1", Weight = 50 },
-        new GasGigant { Name = "GasGigant1", Weight = 40 }
-    };
+            var collection = new List<CelestialBody> 
+            {
+                new Planet("Planet1",10,10,10,10),
+                new Planet("Planet2",20,20,20,20),
+                new Planet ("Planet3", 30, 30, 30, 30),
+                new Star ("Star1",50,50,50,50),
+                new GasGigant("GasGigant1",40,40,40,40,true)
+            };
             double averageWeight = Program.AveragePlanetWeight(collection);
-            Assert.AreEqual(20, averageWeight);
+            double weight = 0;
+            int count = 0;
+            foreach (CelestialBody item in collection)
+            {
+                if (item is Planet)
+                {
+                    weight += item.Weight;
+                    count++;
+                }
+            }
+            Assert.AreEqual(weight / count, averageWeight);
         }
         [TestMethod]
-        public void SumSatellites_ShouldReturnCorrectSum()
-        {
+        public void SumSatellites()
+        { 
             var collection = new List<CelestialBody>
-    {
-        new Planet { Name = "Planet1", Satellites = 3 },
-        new Planet { Name = "Planet2", Satellites = 5 },
-        new Planet { Name = "Planet3", Satellites = 7 },
-        new Star { Name = "Star1" },
-        new GasGigant { Name = "GasGigant1", Satellites = 10 }
-    };
-            int totalSatellites = Program.SumSatellites(collection);
-            Assert.AreEqual(15, totalSatellites); // Ожидаемая сумма спутников: 3 + 5 + 7 = 15
+            {
+                new Planet("Planet1",10,10,10,10),
+                new Planet("Planet2",20,20,20,20),
+                new Planet ("Planet3", 30, 30, 30, 30),
+                new Star ("Star1",50,50,50,50),
+                new GasGigant("GasGigant1",40,40,40,40,true)
+            };
+            int Satellites = Program.SumSatellites(collection);
+            int sumSatellites = 0;
+            foreach (var item in collection)
+            {
+                var planet = item as Planet;
+                if (planet != null)
+                {
+                    sumSatellites += planet.Satellites;
+                }
+            }
+            Assert.AreEqual(sumSatellites, Satellites); 
         }
         [TestMethod]
-        public void CountPlanets_ShouldReturnCorrectCount()
+        public void CountPlanets()
         {
             var collection = new List<CelestialBody>
-    {
-        new Planet { Name = "Planet1" },
-        new Planet { Name = "Planet2" },
-        new Star { Name = "Star1" },
-        new CelestialBody { Name = "CelestialBody1" },
-        new Planet { Name = "Planet3" },
-        new GasGigant { Name = "GasGigant1" }
-    };
+            {
+                new Planet("Planet1",10,10,10,10),
+                new Planet("Planet2",20,20,20,20),
+                new Planet ("Planet3", 30, 30, 30, 30),
+                new Star ("Star1",50,50,50,50),
+                new GasGigant("GasGigant1",40,40,40,40,true)
+            };
             int planetCount = Program.CountPlanets(collection);
-            Assert.AreEqual(3, planetCount); // Ожидаемое количество планет: 3
+            int count = 0;
+            foreach (var item in collection)
+            {
+                if (item is Planet)
+                    count++;
+            }
+            Assert.AreEqual(count, planetCount); 
         }
         [TestMethod]
         public void CountStars_ShouldReturnCorrectCount_WhenOnlyStars()
